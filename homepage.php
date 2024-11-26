@@ -19,7 +19,7 @@ include 'connect.php'
                 $email = $_SESSION['email'];
                 $query = mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
                 while($row=mysqli_fetch_array($query)){
-                    echo $row['firstName'].' '.$row['lastName'];
+                    echo $row['first_name'].' '.$row['last_name'];
                 }
             }
             ?>

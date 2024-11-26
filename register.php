@@ -16,7 +16,7 @@ if(isset($_POST['signUp'])){
     if($result->num_rows > 0){
         echo "Email address already exists!";
     } else {
-        $insertValue="INSERT INTO users(firstName, lastName, email, password)
+        $insertValue="INSERT INTO users(first_name, last_name, email, account_password)
                         VALUE('$firstName', '$lastName', '$email', '$password')";
         if($conn->query($insertValue)==TRUE){
             header("location: index.php");
@@ -32,10 +32,10 @@ if(isset($_POST['signIn'])){
     $password = $_POST['password'];
     $password = md5($password);
 
-    $checkAccount = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    $checkAccount = "SELECT * FROM users WHERE email='$email' AND account_password='$password'";
     $resultingAccount = $conn->query($checkAccount);
 
-    if($result->num_rows > 0){
+    if($resultingAccount->num_rows > 0){
         session_start();
         $row=$resultingAccount->fetch_assoc();
         $_SESSION['email'] = $row['email'];
